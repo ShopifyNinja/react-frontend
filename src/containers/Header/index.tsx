@@ -29,6 +29,16 @@ import arrowRightLight from './arrows/arrowRightLight.svg';
 
 import backIcon from './back.svg';
 import backLightIcon from './backLight.svg';
+import {
+    Button,
+    Menu,
+    ButtonGroup,
+    MenuItem
+} from '@material-ui/core';
+import AccountBalanceWalletIcon from '@material-ui/icons/AccountBalanceWallet';
+import PersonIcon from '@material-ui/icons/Person';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import { useHistory } from 'react-router-dom'
 
 interface ReduxProps {
     currentMarket: Market | undefined;
@@ -55,7 +65,31 @@ const noHeaderRoutes = ['/confirm', '/404', '/500', '/setup'];
 type Props = ReduxProps & DispatchProps & IntlProps & LocationProps;
 
 class Head extends React.Component<Props> {
+    // const [anchorEl, setAnchorEl] = React.useState(null);
+    // const history = useHistory()
+
+    // const handleClick = (event) => {
+    //     setAnchorEl(event.currentTarget);
+    // };
+
+    // const handleClose = () => {
+    //     setAnchorEl(null);
+    // };
+    constructor(props) {
+        super(props);
+        this.state = { anchorEl: null }
+    }
+
+    handleClick(event) {
+        this.setState({ anchorEl: event.currentTarget })
+    };
+
+    handleClose() {
+        this.setState({ anchorEl: null })
+    };
+
     public render() {
+        const anchor = this.state;
         const { mobileWallet, location } = this.props;
         const tradingCls = location.pathname.includes('/trading') ? 'pg-container-trading' : '';
         const shouldRenderHeader =
@@ -68,24 +102,77 @@ class Head extends React.Component<Props> {
         return (
             <header className={`pg-header`}>
                 <div className={`pg-container pg-header__content ${tradingCls}`}>
-                    <div
+                    {/* <div
                         className={`pg-sidebar__toggler ${mobileWallet && 'pg-sidebar__toggler-mobile'}`}
                         onClick={this.openSidebar}>
                         <span className="pg-sidebar__toggler-item" />
                         <span className="pg-sidebar__toggler-item" />
                         <span className="pg-sidebar__toggler-item" />
-                    </div>
+                    </div> */}
                     <div onClick={(e) => this.redirectToLanding()} className="pg-header__logo">
                         <Logo />
                     </div>
-                    {this.renderMarketToggler()}
+                    {/* {this.renderMarketToggler()}
                     <div className="pg-header__location">
                         {mobileWallet ? <span>{mobileWallet}</span> : <span>{location.pathname.split('/')[1]}</span>}
                     </div>
-                    {this.renderMobileWalletNav()}
+                    {this.renderMobileWalletNav()} */}
                     <div className="pg-header__navbar">
-                        {this.renderMarketToolbar()}
+                        <div className="menu-item">ASCOINDEX</div>
+                        <div
+                            className="menu-item"
+                        // onClick={() => { history.push('/trading') }}
+                        >AL-SAT</div>
+                        <div className="menu-item">DESTEK</div>
+                        <div className="menu-item">ORTAKLIK</div>
+                        <div className="menu-item">BLOG</div>
+                        <ButtonGroup size="small" aria-label="small outlined button group" className="menu-item">
+                            <Button>Pro</Button>
+                            <Button>Kolay</Button>
+                            <Button>Hızlı</Button>
+                        </ButtonGroup>
+                        <div className="menu-item">
+                            <div aria-controls="simple-menu" aria-haspopup="true" onClick={this.handleClick} style={{ display: 'flex' }}>
+                                TR
+                                <ExpandMoreIcon />
+                            </div>
+                            <Menu
+                                id="simple-menu"
+                                // anchorEl={this.state.anchorEl}
+                                keepMounted
+                                // open={Boolean(this.state.anchorEl)}
+                                onClose={this.handleClose}
+                            >
+                                <MenuItem onClick={this.handleClose}>TR</MenuItem>
+                                <MenuItem onClick={this.handleClose}>EN</MenuItem>
+                            </Menu>
+                        </div>
                         <NavBar onLinkChange={this.closeMenu} />
+                        <div className="menu-item">
+                            <div aria-controls="simple-menu" aria-haspopup="true" onClick={this.handleClick} style={{ display: 'flex' }}>
+                                50.000 ₺
+                                <ExpandMoreIcon />
+                            </div>
+                            <Menu
+                                id="simple-menu"
+                                // anchorEl={this.state.anchorEl}
+                                keepMounted
+                                // open={Boolean(this.state.anchorEl)}
+                                onClose={this.handleClose}
+                            >
+                                <MenuItem onClick={this.handleClose}>???</MenuItem>
+                                <MenuItem onClick={this.handleClose}>???</MenuItem>
+                                <MenuItem onClick={this.handleClose}>???</MenuItem>
+                            </Menu>
+                        </div>
+                        <Button variant="contained" className="menu-item btn-login1">
+                            <AccountBalanceWalletIcon />
+                            Cüzdan
+                        </Button>
+                        <Button variant="contained" className="menu-item btn-register1">
+                            <PersonIcon style={{ color: '#57b2f6' }} />
+                            Hesabım
+                        </Button>
                     </div>
                 </div>
             </header>

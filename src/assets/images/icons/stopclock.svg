@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="35.905" height="38.54" viewBox="0 0 35.905 38.54">
+  <g id="stopclock" transform="translate(-17.504)">
+    <g id="Group_3849" data-name="Group 3849" transform="translate(17.504)">
+      <g id="Group_3848" data-name="Group 3848">
+        <path id="Path_4059" data-name="Path 4059" d="M20.074,59.119l4.045-4.045a1.505,1.505,0,1,0-2.129-2.129L17.945,56.99a1.505,1.505,0,1,0,2.129,2.129Z" transform="translate(-17.504 -48.552)" fill="#57b2f6"/>
+        <path id="Path_4060" data-name="Path 4060" d="M237.505,201A1.505,1.505,0,0,0,236,202.505v5.269a1.505,1.505,0,0,0,3.011,0v-5.269A1.505,1.505,0,0,0,237.505,201Z" transform="translate(-219.553 -185.87)" fill="#57b2f6"/>
+        <path id="Path_4061" data-name="Path 4061" d="M53.141,5.337V3.011H54.5A1.505,1.505,0,1,0,54.5,0H48.775a1.505,1.505,0,1,0,0,3.011H50.13V5.337a16.635,16.635,0,1,0,3.011,0ZM51.635,35.529A13.624,13.624,0,1,1,65.26,21.9,13.64,13.64,0,0,1,51.635,35.529Z" transform="translate(-33.683)" fill="#57b2f6"/>
+        <path id="Path_4062" data-name="Path 4062" d="M407.371,56.99l-4.045-4.045a1.505,1.505,0,1,0-2.129,2.129l4.045,4.045a1.505,1.505,0,1,0,2.129-2.129Z" transform="translate(-371.907 -48.551)" fill="#57b2f6"/>
+      </g>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="9.207" height="9.207" viewBox="0 0 9.207 9.207">
+  <g id="clock" transform="translate(-1 -1)">
+    <path id="Path_3591" data-name="Path 3591" d="M5.6,1a4.6,4.6,0,1,0,4.6,4.6A4.6,4.6,0,0,0,5.6,1Zm0,8.37A3.767,3.767,0,1,1,9.37,5.6,3.767,3.767,0,0,1,5.6,9.37Z" fill="#2c3247"/>
+    <path id="Path_3592" data-name="Path 3592" d="M11.837,7.756V5.419a.419.419,0,0,0-.837,0V7.93a.418.418,0,0,0,.123.3l1.256,1.256a.418.418,0,1,0,.592-.592Z" transform="translate(-5.815 -2.326)" fill="#2c3247"/>
+  </g>
+</svg>

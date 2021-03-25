@@ -17,10 +17,10 @@ export const ru: LangType = {
     'page.sidebar.group.text': 'Fee Group:',
     'page.sidebar.group.value': 'Base',
 
-    'page.body.trade.header.markets': 'Рынки',
-    'page.body.trade.header.markets.content.pair': 'Пара',
-    'page.body.trade.header.markets.content.price': 'Цена',
-    'page.body.trade.header.markets.content.change': 'Изменение 24ч',
+    'page.body.trade.header.markets': 'Piyasa Alım Satımları',
+    'page.body.trade.header.markets.content.pair': 'Fiyat (₺)',
+    'page.body.trade.header.markets.content.price': 'Miktar (BTC)',
+    'page.body.trade.header.markets.content.change': 'Toplam (₺)',
     'page.body.trade.header.markets.content.market': 'Пара',
     'page.body.trade.header.markets.content.last_price': 'Последняя цена',
     'page.body.trade.header.markets.content.search': 'Поиск',
@@ -58,11 +58,11 @@ export const ru: LangType = {
 
     'page.body.trade.header.asks': 'Заявки на продажу',
     'page.body.trade.header.bids': 'Заявки на покупку',
-    'page.body.trade.orderbook': 'Книга ордеров',
+    'page.body.trade.orderbook': 'Piyasa Emirleri',
     'page.body.trade.orderbook.lastMarket': 'Последняя рыночная цена',
-    'page.body.trade.orderbook.header.price': 'Цена',
-    'page.body.trade.orderbook.header.amount': 'Кол.',
-    'page.body.trade.orderbook.header.volume': 'Объем',
+    'page.body.trade.orderbook.header.price': 'Fiyat (₺)',
+    'page.body.trade.orderbook.header.amount': 'Miktar (BTC)',
+    'page.body.trade.orderbook.header.volume': 'Toplam (₺)',
 
     'page.body.trade.header.recentTrades': 'История торгов рынка',
     'page.body.trade.header.recentTrades.content.time': 'Время',
@@ -273,6 +273,11 @@ export const ru: LangType = {
     'page.body.openOrders.content.status.wait': 'Открыт',
     'page.body.openOrders.content.status.cancel': 'Отменен',
     'page.body.openOrders.header.button.cancelAll': 'Отменить все',
+    'page.body.openOrders.header.button.limit': 'LİMİT',
+    'page.body.openOrders.header.button.market': 'PIYASA',
+    'page.body.openOrders.header.button.stopLimit': 'STOP-LİMİT',
+    'page.body.openOrders.header.button.bring': 'Fiyat getir',
+    'page.body.openOrders.header.button.maximum': 'Maksimum',
 
     'page.body.history.deposit': 'История депозитов',
     'page.body.history.deposit.header.txid': 'txID',
@@ -586,9 +591,9 @@ export const ru: LangType = {
     'page.header.signUp.terms': 'Я согласен со всеми заявлениями с точки зрения обслуживания',
     'page.header.signUp.modal.header': 'ПРОВЕРЬТЕ СВОЙ АДРЕС ЭЛЕКТРОННОЙ ПОЧТЫ',
     'page.header.signUp.modal.body': 'Чтобы завершить регистрацию, найдите в своем' +
-                                     ' почтовом ящике электронное письмо с дальнейшими инструкциями. ' +
-                                     'Если вы не можете найти адрес электронной почты, проверьте свою' +
-                                     ' электронную почту со спамом.',
+        ' почтовом ящике электронное письмо с дальнейшими инструкциями. ' +
+        'Если вы не можете найти адрес электронной почты, проверьте свою' +
+        ' электронную почту со спамом.',
     'page.header.signUp.modal.footer': 'OK',
     'page.header.signUp.strength.password': 'Password Strength',
     'page.header.signUp.password.too.weak': 'Too weak',
@@ -607,7 +612,7 @@ export const ru: LangType = {
 
     'page.modal.withdraw.success': 'Успешно!',
     'page.modal.withdraw.success.message.content': 'Ваш вывод был успешно подтвержден. Пожалуйста, подождите, чтобы получить ' +
-                                                   'несколько обязательных подтверждений для завершения этой транзакции.',
+        'несколько обязательных подтверждений для завершения этой транзакции.',
     'page.modal.withdraw.success.button': 'OK',
 
     'page.modal.expired.title': 'Ваша сессия истекла',
@@ -827,7 +832,7 @@ export const ru: LangType = {
 
     'resource.documents.missing_doc_expire': 'Дата документа отсутствует',
     'resource.documents.empty_doc_expire': 'Дата документа отсутствует',
-    'resource.documents.expire_not_a_date' : 'Дата документа отсутствует',
+    'resource.documents.expire_not_a_date': 'Дата документа отсутствует',
     'resource.documents.missing_doc_type': 'Тип документа отсутствует',
     'resource.documents.empty_doc_type': 'Тип документа отсутствует',
     'resource.documents.missing_doc_number': 'Номер документа отсутствует',
@@ -1001,6 +1006,13 @@ export const ru: LangType = {
     'account.internal_transfer.insufficient_balance': 'Insufficient_balance',
     'account.internal_transfer.can_not_tranfer_to_yourself': 'Can not tranfer to yourself',
     'success.internal.transfer.created': 'Internal transfer was created',
+
+    // home page transfer
+    'page.body.home.marketInfo.title.text1': 'Kripto Para Almak',
+    'page.body.home.marketInfo.title.text2': 'Artık çok kolay',
+    'page.body.home.marketInfo.title.text3': 'Türkiye’nin Yerli Kripto Borsası',
+    'page.body.home.marketInfo.searchPlaceholder': 'E-Mail Adreshiniz',
+    'page.body.home.marketInfo.searchbuttontitle': 'KATIL',
 
     ...nationalitiesNames,
     ...mobileTranslationsRu,

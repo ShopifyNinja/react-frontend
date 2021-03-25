@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { Link, RouteProps, withRouter } from 'react-router-dom';
 import { compose } from 'redux';
 
-import { IntlProps } from '../../';
+import { IntlProps } from '../..';
 import { Logo } from '../../components';
 import { MarketsTable } from '../../containers';
 import { toggleColorTheme } from '../../helpers';
@@ -31,6 +31,51 @@ import RedditIcon from 'src/assets/images/landing/social/Reddit.svg';
 import FacebookIcon from 'src/assets/images/landing/social/Facebook.svg';
 import MediumIcon from 'src/assets/images/landing/social/Medium.svg';
 import CoinMarketIcon from 'src/assets/images/landing/social/CoinMarket.svg';
+
+import DefaultHeader from 'src/containers/DefaultHeader';
+import favicon from 'src/assets/images/icons/favicon.svg';
+// import FixedTextField from 'src/components/FixedTextField';
+import {
+    Grid,
+    TextField,
+    Button
+} from '@material-ui/core';
+
+// const CssTextField = withStyles({
+//     root: {
+//         '& label': {
+//             fontFamily: 'Roboto',
+//             fontStyle: 'normal',
+//             fontWeight: 'bold',
+//             fontSize: '150%',
+//             alignItems: 'center',
+//             textAlign: 'center',
+
+//             color: '#333',
+//             transform: 'translate(22px, 16px) scale(1)'
+//         },
+
+//         '& label.Mui-focused': {
+//             color: '#333',
+//         },
+//         '& .MuiInput-underline:after': {
+//             borderBottomColor: '#fff',
+//         },
+//         '& .MuiOutlinedInput-root': {
+//             '& fieldset': {
+//                 border: '1px solid#333',
+//                 borderRadius: '19px',
+//                 height: 50
+//             },
+//             '&:hover fieldset': {
+//                 borderColor: '#333',
+//             },
+//             '&.Mui-focused fieldset': {
+//                 borderColor: '#333',
+//             },
+//         },
+//     },
+// })(FixedTextField);
 
 interface ReduxProps {
     isLoggedIn: boolean;
@@ -61,30 +106,29 @@ class Landing extends React.Component<Props> {
     public render() {
         return (
             <div className="pg-landing-screen">
-                <div className="pg-landing-screen__header">
-                    <div className="pg-landing-screen__header__wrap">
-                        <div className="pg-landing-screen__header__wrap__left" onClick={(e) => this.handleScrollTop()}>
-                            <Logo />
-                        </div>
-                        <div className="pg-landing-screen__header__wrap__right">
-                            {this.props.isLoggedIn ? (
-                                <Link to="/profile" className="landing-button">
-                                    {this.translate('page.body.landing.header.button1')}
-                                </Link>
-                            ) : (
-                                <>
-                                    <Link to="/signin" className="landing-button landing-button--simple">
-                                        {this.translate('page.body.landing.header.button2')}
-                                    </Link>
-                                    <Link to="/signup" className="landing-button">
-                                        {this.translate('page.body.landing.header.button3')}
-                                    </Link>
-                                </>
-                            )}
-                        </div>
-                    </div>
-                </div>
+                <DefaultHeader />
                 <LandingBlock className="pg-landing-screen__top" contentClassName="pg-landing-screen__top-content">
+                    <Grid container spacing={3} className="pg-landing-screen-section1">
+                        <Grid item xs={12} md={2}></Grid>
+                        <Grid item xs={12} md={8}>
+                            <img src={favicon} alt="favicon.svg" />
+                            <h1>{this.translate('page.body.home.marketInfo.title.text1')}</h1>
+                            <h1>{this.translate('page.body.home.marketInfo.title.text2')}</h1>
+                            <h3>{this.translate('page.body.home.marketInfo.title.text3')}</h3>
+                            <div className="search-container">
+                                <TextField
+                                    id="outlined-basic"
+                                    variant="outlined"
+                                    placeholder={this.translate('page.body.home.marketInfo.searchPlaceholder')}
+                                    className="search-form"
+                                />
+                                <Button variant="contained" className="btn-search">
+                                    {this.translate('page.body.home.marketInfo.searchbuttontitle')}
+                                </Button>
+                            </div>
+                        </Grid>
+                        <Grid item xs={12} md={2}></Grid>
+                    </Grid>
                     <div className="pg-landing-screen__market-info">
                         <div className="pg-landing-screen__market-info__wrap">
                             <div className="pg-landing-screen__market-info__wrap__title">

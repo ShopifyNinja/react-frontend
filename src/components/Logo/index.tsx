@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import { LogoIcon } from '../../assets/images/LogoIcon';
 import { selectApplyWindowEnvsTriggerState } from '../../modules';
 import { CustomizationSettingsInterface, LogoInterface } from '../../themes';
+import logo from 'src/assets/images/logo.svg';
 
 
 const DEFAULT_IMAGE: LogoInterface = {
@@ -26,8 +27,9 @@ export const Logo: FC = (): ReactElement => {
     }, [applyWindowEnvsTrigger]);
 
     return (
-        <div className="pg-logo">
-            {image?.url ? (
+        <div className="pg-logo" style={{ cursor: 'pointer' }}>
+            <img src={logo} alt="log" />
+            {/* {image?.url ? (
                 <img
                     src={image.url}
                     alt="Logo"
@@ -39,7 +41,7 @@ export const Logo: FC = (): ReactElement => {
                     className="pg-logo__img"
                     styles={{ width: image?.width ? `${image.width}px` : 'auto'}}
                 />
-            )}
+            )} */}
         </div>
     );
 };

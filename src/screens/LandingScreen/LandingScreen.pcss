@@ -15,21 +15,39 @@
     color: var(--system-red);
   }
 
+  .pg-landing-screen-section1{
+      background-image: url(assets/images/materials/slider.png);
+      background-size: cover;
+      padding-top:200px;
+      height:80vh;
+      position: relative;
+      top: -75px;
+  }
+
+  .search-container{
+    display:flex;
+    margin-bottom:50px;
+    .btn-search{
+      width: 90px;
+      border: none;
+      background: #57B2F6;
+      color: #fff;
+      font-size: 15px;
+      font-weight: 600;
+    }
+    .search-form{
+      background-color: transparent;
+      border: none;
+      width: 220px;
+    }
+  }
+
   h1 {
-    align-items: center;
-    color: var(--primary-text-color);
-    display: block;
-    font-size: 48px;
-    font-style: normal;
-    font-weight: 500;
-    letter-spacing: 0.02em;
-    line-height: 56px;
-    margin: 0;
-    margin-block-end: 0;
-    margin-block-start: 0;
-    margin-inline-end: 0;
-    margin-inline-start: 0;
-    text-align: center;
+    font-size: 40px;
+    line-height: 46px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: #003399;
   }
 
   h2 {
@@ -47,6 +65,14 @@
     margin-inline-end: 0;
     margin-inline-start: 0;
     text-align: center;
+  }
+
+  h3{
+    font-size: 19px;
+    font-weight: 400;
+    color: #000;
+    letter-spacing: 1px;
+    margin-bottom: 25px;
   }
 
   .landing-button {
@@ -503,6 +529,15 @@
       line-height: 15px;
       opacity: 0.5;
       width: 100%;
+    }
+  }
+}
+
+@media screen and (max-width: 959px) {
+  .pg-landing-screen {
+    .pg-landing-screen-section1{
+      padding-left:50px;
+      padding-right:50px;
     }
   }
 }

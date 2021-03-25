@@ -1,0 +1,13 @@
+<svg id="Group_4119" data-name="Group 4119" xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30">
+  <g id="eth">
+    <path id="Path_3668" data-name="Path 3668" d="M15,0A15,15,0,1,1,0,15,15,15,0,0,1,15,0Z" fill="#627eea"/>
+    <g id="Group_2604" data-name="Group 2604" transform="translate(8.761 3.587)">
+      <path id="Path_3618" data-name="Path 3618" d="M11.858,2.875v7.954l6.723,3Z" transform="translate(-5.134 -2.875)" fill="rgba(255,255,255,0.6)"/>
+      <path id="Path_3619" data-name="Path 3619" d="M13.192,2.875,6.469,13.833l6.724-3Z" transform="translate(-6.469 -2.875)" fill="#fff"/>
+      <path id="Path_3620" data-name="Path 3620" d="M11.858,16.564v5.4l6.727-9.307Z" transform="translate(-5.134 0.853)" fill="rgba(255,255,255,0.6)"/>
+      <path id="Path_3621" data-name="Path 3621" d="M13.192,21.969V16.563l-6.724-3.9Z" transform="translate(-6.469 0.853)" fill="#fff"/>
+      <path id="Path_3622" data-name="Path 3622" d="M11.858,16.157l6.723-3.9-6.723-3Z" transform="translate(-5.134 -0.586)" fill="rgba(255,255,255,0.2)"/>
+      <path id="Path_3623" data-name="Path 3623" d="M6.469,12.254l6.724,3.9V9.252Z" transform="translate(-6.469 -0.586)" fill="rgba(255,255,255,0.6)"/>
+    </g>
+  </g>
+</svg>

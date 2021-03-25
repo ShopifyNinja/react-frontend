@@ -46,27 +46,36 @@ const getTranslations = (lang: string, isMobileDevice: boolean) => {
 };
 
 const RenderDeviceContainers = () => {
-    const isMobileDevice = useSelector(selectMobileDeviceState);
+    // const isMobileDevice = useSelector(selectMobileDeviceState);
 
-    if (browserHistory.location.pathname === '/setup' || !isMobileDevice) {
-        return (
-            <React.Fragment>
-                <HeaderContainer />
-                <SidebarContainer />
-                <CustomizationContainer />
-                <AlertsContainer />
-                <LayoutContainer />
-            </React.Fragment>
-        );
-    }
+    // if (browserHistory.location.pathname === '/setup' || !isMobileDevice) {
+    //     return (
+    //         <React.Fragment>
+    //             <HeaderContainer />
+    //             <SidebarContainer />
+    //             <CustomizationContainer />
+    //             <AlertsContainer />
+    //             <LayoutContainer />
+    //         </React.Fragment>
+    //     );
+    // }
 
+    // return (
+    //     <div className="pg-mobile-app">
+    //         <MobileHeader />
+    //         <AlertsContainer/>
+    //         <LayoutContainer/>
+    //     </div>
+    // );
     return (
-        <div className="pg-mobile-app">
-            <MobileHeader />
-            <AlertsContainer/>
-            <LayoutContainer/>
-        </div>
-    );
+        <React.Fragment>
+            <HeaderContainer />
+            <SidebarContainer />
+            <CustomizationContainer />
+            <AlertsContainer />
+            <LayoutContainer />
+        </React.Fragment>
+    )
 };
 
 export const App = () => {

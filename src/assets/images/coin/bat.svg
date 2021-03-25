@@ -1,0 +1,13 @@
+<svg id="btc_1_" data-name="btc (1)" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="23" height="23" viewBox="0 0 23 23">
+  <defs>
+    <clipPath id="clip-path">
+      <circle id="Ellipse_199" data-name="Ellipse 199" cx="11.5" cy="11.5" r="11.5" fill="#f7931a"/>
+    </clipPath>
+  </defs>
+  <g id="Mask_Group_7" data-name="Mask Group 7" clip-path="url(#clip-path)">
+    <g id="bat">
+      <circle id="Ellipse_206" data-name="Ellipse 206" cx="11.5" cy="11.5" r="11.5" fill="#ff5000"/>
+      <path id="Path_3630" data-name="Path 3630" d="M4.313,16.891,11.537,4.672l7.151,12.2Zm7.207-7.274L8.567,14.494h5.919L11.519,9.617Z" fill="#fff"/>
+    </g>
+  </g>
+</svg>

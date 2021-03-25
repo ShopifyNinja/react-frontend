@@ -20,11 +20,11 @@ export const en = {
     'page.body.trade.header.market': 'Market',
     'page.body.trade.header.yours': 'Yours',
 
-    'page.body.trade.header.markets': 'Markets',
+    'page.body.trade.header.markets': 'Market Trades',
     'page.body.trade.header.markets.content.market': 'Market',
-    'page.body.trade.header.markets.content.pair': 'Pair',
-    'page.body.trade.header.markets.content.price': 'Price',
-    'page.body.trade.header.markets.content.last_price': 'Last Price',
+    'page.body.trade.header.markets.content.pair': 'Price ($)',
+    'page.body.trade.header.markets.content.price': 'Amount (BTC)',
+    'page.body.trade.header.markets.content.last_price': 'Total ($)',
     'page.body.trade.header.markets.content.change': 'Change',
     'page.body.trade.header.markets.content.search': 'Search',
     'page.body.trade.header.markets.content.volume': 'Volume',
@@ -61,11 +61,11 @@ export const en = {
 
     'page.body.trade.header.asks': 'Asks',
     'page.body.trade.header.bids': 'Bids',
-    'page.body.trade.orderbook': 'Order Book',
+    'page.body.trade.orderbook': 'Market Orders',
     'page.body.trade.orderbook.lastMarket': 'Last Market Price',
-    'page.body.trade.orderbook.header.price': 'Price',
-    'page.body.trade.orderbook.header.amount': 'Amount',
-    'page.body.trade.orderbook.header.volume': 'Total',
+    'page.body.trade.orderbook.header.price': 'Price ($)',
+    'page.body.trade.orderbook.header.amount': 'Amount (BTC)',
+    'page.body.trade.orderbook.header.volume': 'Total ($)',
 
     'page.body.trade.header.recentTrades': 'Recent Trades',
     'page.body.trade.header.recentTrades.content.time': 'Time',
@@ -267,6 +267,12 @@ export const en = {
     'page.body.openOrders.content.status.wait': 'Open',
     'page.body.openOrders.content.status.cancel': 'Stopped',
     'page.body.openOrders.header.button.cancelAll': 'Cancel all',
+    'page.body.openOrders.header.button.limit': 'LIMIT',
+    'page.body.openOrders.header.button.market': 'MARKET',
+    'page.body.openOrders.header.button.stopLimit': 'STOP-LIMIT',
+    'page.body.openOrders.header.button.bring': 'Bring price',
+    'page.body.openOrders.header.button.maximum': 'Maximum',
+
 
     'page.body.history.deposit': 'Deposit History',
     'page.body.history.deposit.header.txid': 'txID',
@@ -577,9 +583,9 @@ export const en = {
     'page.header.signUp.terms': 'I have read and agree to the Terms of Service',
     'page.header.signUp.modal.header': 'VERIFY YOUR EMAIL ADDRESS',
     'page.header.signUp.modal.body': 'To complete registration, check for an ' +
-                                      'email in your inbox with further ' +
-                                      'instruction. If you cannot find the email, ' +
-                                      'please check your spam folder',
+        'email in your inbox with further ' +
+        'instruction. If you cannot find the email, ' +
+        'please check your spam folder',
     'page.header.signUp.modal.footer': 'OK',
     'page.header.signUp.strength.password': 'Password Strength',
     'page.header.signUp.password.too.weak': 'TOO WEAK',
@@ -738,7 +744,7 @@ export const en = {
     'resource.phone.verification_invalid': 'Phone is not found or verification code is invalid',
     'resource.documents.limit_reached': 'Maximum number of documents already reached',
     'resource.documents.limit_will_be_reached': 'Documents amount will reach limit by this upload',
-    'resource.otp.already_enabled':'2FA has been already enabled for this account',
+    'resource.otp.already_enabled': '2FA has been already enabled for this account',
     'resource.otp.invalid': 'OTP code is invalid',
     'resource.password.doesnt_match': 'New passwords don\'t match',
     'resource.password.prev_pass_not_correct': 'Previous password is not correct',
@@ -823,7 +829,7 @@ export const en = {
 
     'resource.documents.missing_doc_expire': 'Documents expiration date is missing',
     'resource.documents.empty_doc_expire': 'Documents expiration date is missing or empty',
-    'resource.documents.expire_not_a_date' : 'Documents expiration is not a date',
+    'resource.documents.expire_not_a_date': 'Documents expiration is not a date',
     'resource.documents.missing_doc_type': 'Documents type is missing',
     'resource.documents.empty_doc_type': 'Documents type is missing or empty',
     'resource.documents.missing_doc_number': 'Documents number is missing',
@@ -997,6 +1003,15 @@ export const en = {
     'account.internal_transfer.insufficient_balance': 'Insufficient_balance',
     'account.internal_transfer.can_not_tranfer_to_yourself': 'Can not tranfer to yourself',
     'success.internal.transfer.created': 'Internal transfer was created',
+
+    // home page transfer
+    'page.body.home.marketInfo.title.text1': 'Kripto Para Almak',
+    'page.body.home.marketInfo.title.text2': 'Artık çok kolay',
+    'page.body.home.marketInfo.title.text3': 'Türkiye’nin Yerli Kripto Borsası',
+    'page.body.home.marketInfo.searchPlaceholder': 'E-Mail Adreshiniz',
+    'page.body.home.marketInfo.searchbuttontitle': 'KATIL',
+
+
 
     ...nationalitiesNames,
     ...customTranslations,

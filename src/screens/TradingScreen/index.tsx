@@ -34,8 +34,31 @@ import { depthFetch } from '../../modules/public/orderBook';
 import { rangerConnectFetch, RangerConnectFetch } from '../../modules/public/ranger';
 import { RangerState } from '../../modules/public/ranger/reducer';
 import { selectRanger } from '../../modules/public/ranger/selectors';
-
+import { NavBar } from 'src/containers/NavBar';
+import {
+    Grid,
+    Button
+} from '@material-ui/core';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableContainer from '@material-ui/core/TableContainer';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import Paper from '@material-ui/core/Paper';
+import GridLayout from 'react-grid-layout';
 const { WidthProvider, Responsive } = require('react-grid-layout');
+
+function createData(history, market, medicine, operation, stopPrice, price, amount, total1, remainder, actual, total2) {
+    return { history, market, medicine, operation, stopPrice, price, amount, total1, remainder, actual, total2 };
+}
+
+const rows = [
+    createData('21.12.2021', "BTCTRY", "Tip", "Satış", "413.437.00", "413.437.00", "0.0420034", "0.0420034", "0.0230034", "0.00", "0.0420034"),
+    createData('21.12.2021', "BTCTRY", "Tip", "Satış", "413.437.00", "413.437.00", "0.0420034", "0.0420034", "0.0230034", "0.00", "0.0420034"),
+    createData('21.12.2021', "BTCTRY", "Tip", "Satış", "413.437.00", "413.437.00", "0.0420034", "0.0420034", "0.0230034", "0.00", "0.0420034"),
+    createData('21.12.2021', "BTCTRY", "Tip", "Satış", "413.437.00", "413.437.00", "0.0420034", "0.0420034", "0.0230034", "0.00", "0.0420034"),
+];
 
 const breakpoints = {
     lg: 1200,
@@ -46,12 +69,22 @@ const breakpoints = {
 };
 
 const cols = {
-    lg: 24,
-    md: 24,
+    lg: 20,
+    md: 5,
     sm: 12,
     xs: 12,
     xxs: 12,
 };
+
+const breakpoints1 = {
+    lg: 1200,
+    md: 996,
+    sm: 768,
+    xs: 480,
+    xxs: 0,
+};
+
+const cols1 = { lg: 20, md: 10, sm: 6, xs: 4, xxs: 2 };
 
 interface ReduxProps {
     currentMarket: Market | undefined;
@@ -88,27 +121,27 @@ const TradingWrapper = props => {
         const data = [
             {
                 i: 1,
-                render: () => <OrderComponent size={orderComponentResized} />,
+                render: () => <OrderBook size={orderComponentResized} />,
             },
             {
                 i: 2,
                 render: () => <Charts />,
             },
-            {
-                i: 3,
-                render: () => <OrderBook size={orderBookComponentResized} />,
-            },
+            // {
+            //     i: 3,
+            //     render: () => <OrderBook />,
+            // },
             {
                 i: 4,
-                render: () => <OpenOrdersComponent/>,
+                render: () => <OpenOrdersComponent />,
             },
             {
                 i: 5,
-                render: () => <RecentTrades/>,
+                render: () => <RecentTrades />,
             },
             {
                 i: 6,
-                render: () => <MarketsComponent/>,
+                render: () => <MarketsComponent />,
             },
         ];
 
@@ -126,7 +159,7 @@ const TradingWrapper = props => {
             draggableHandle=".cr-table-header__content, .pg-trading-screen__tab-panel, .draggable-container"
             rowHeight={14}
             layouts={layouts}
-            onLayoutChange={() => {return;}}
+            onLayoutChange={() => { return; }}
             margin={[5, 5]}
             onResize={handleResize}
             onDrag={handeDrag}
@@ -189,7 +222,7 @@ class Trading extends React.Component<Props, StateProps> {
                 history.replace(`/trading/${nextProps.currentMarket.id}`);
 
                 if (!incrementalOrderBook()) {
-                  this.props.depthFetch(nextProps.currentMarket);
+                    this.props.depthFetch(nextProps.currentMarket);
                 }
             }
         }
@@ -202,12 +235,18 @@ class Trading extends React.Component<Props, StateProps> {
     public render() {
         const { orderComponentResized, orderBookComponentResized } = this.state;
         const { rgl } = this.props;
-
         return (
             <div className={'pg-trading-screen'}>
                 <div className={'pg-trading-wrap'}>
-                    <ToolBar/>
+                    <ToolBar />
                     <div data-react-toolbox="grid" className={'cr-grid'}>
+                        <div className="cr-grid__grid-wrapper">
+                            {/* <Grid container>
+                                <Grid item xs={12} md={2}>a</Grid>
+                                <Grid item xs={12} md={6}>a</Grid>
+                                <Grid item xs={12} md={3}>a</Grid>
+                            </Grid> */}
+                        </div>
                         <div className="cr-grid__grid-wrapper">
                             <TradingWrapper
                                 layouts={rgl.layouts}
@@ -216,6 +255,53 @@ class Trading extends React.Component<Props, StateProps> {
                                 handleResize={this.handleResize}
                                 handeDrag={this.handeDrag}
                             />
+                        </div>
+                        <div className="cr-grid__grid-wrapper">
+                            <Grid container>
+                                <Grid item xs={12} md={12}>
+                                    <div className="main-row-container">
+                                        <div style={{ color: '#57B2F6', marginRight: 30 }}>Açık Emirlerim</div>
+                                        <div style={{ marginRight: 30 }}>İşlem Geçmişi</div>
+                                        <div style={{ marginRight: 30 }}>Alım/Satım Geçmişi</div>
+                                    </div>
+                                    <TableContainer component={Paper}>
+                                        <Table aria-label="simple table">
+                                            <TableHead>
+                                                <TableRow>
+                                                    <TableCell>Tarih</TableCell>
+                                                    <TableCell align="center">Market</TableCell>
+                                                    <TableCell align="center">Tip</TableCell>
+                                                    <TableCell align="center">İşlem</TableCell>
+                                                    <TableCell align="center">Stop Fiyat (BTC)</TableCell>
+                                                    <TableCell align="center">Fiyat (BTC)</TableCell>
+                                                    <TableCell align="center">Miktar (ETH)</TableCell>
+                                                    <TableCell align="center">Toplam (BTC)</TableCell>
+                                                    <TableCell align="center">Kalan (ETH)</TableCell>
+                                                    <TableCell align="center">Gerçekleşen Mik.</TableCell>
+                                                    <TableCell align="right">Toplam (BTC)</TableCell>
+                                                </TableRow>
+                                            </TableHead>
+                                            <TableBody>
+                                                {rows.map((row) => (
+                                                    <TableRow key={row.history}>
+                                                        <TableCell component="th" scope="row">{row.history}</TableCell>
+                                                        <TableCell align="center" >{row.market}</TableCell>
+                                                        <TableCell align="center" >{row.medicine}</TableCell>
+                                                        <TableCell align="center" >{row.operation}</TableCell>
+                                                        <TableCell align="center" >{row.stopPrice}</TableCell>
+                                                        <TableCell align="center" >{row.price}</TableCell>
+                                                        <TableCell align="center" >{row.amount}</TableCell>
+                                                        <TableCell align="center" >{row.total1}</TableCell>
+                                                        <TableCell align="center" >{row.remainder}</TableCell>
+                                                        <TableCell align="center">{row.actual}</TableCell>
+                                                        <TableCell align="right">{row.total2}</TableCell>
+                                                    </TableRow>
+                                                ))}
+                                            </TableBody>
+                                        </Table>
+                                    </TableContainer>
+                                </Grid>
+                            </Grid>
                         </div>
                     </div>
                 </div>

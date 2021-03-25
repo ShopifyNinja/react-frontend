@@ -1,0 +1,16 @@
+<svg id="btc_1_" data-name="btc (1)" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="23" height="23" viewBox="0 0 23 23">
+  <defs>
+    <clipPath id="clip-path">
+      <circle id="Ellipse_199" data-name="Ellipse 199" cx="11.5" cy="11.5" r="11.5" fill="#f7931a"/>
+    </clipPath>
+  </defs>
+  <g id="Mask_Group_3" data-name="Mask Group 3" clip-path="url(#clip-path)">
+    <g id="dash">
+      <circle id="Ellipse_202" data-name="Ellipse 202" cx="11.5" cy="11.5" r="11.5" fill="#008ce7"/>
+      <g id="Group_2605" data-name="Group 2605">
+        <path id="Path_3625" data-name="Path 3625" d="M13.718,5.753H8.488l-.433,2.42,4.716.007c2.322,0,3.012.843,2.989,2.243a10.158,10.158,0,0,1-.455,2.322c-.357,1.049-1.093,2.244-3.852,2.24l-4.584,0L6.438,17.4h5.216a7.264,7.264,0,0,0,3.45-.6c1.836-.847,2.929-2.66,3.368-5.027.651-3.522-.161-6.028-4.755-6.028Z" fill="#fff"/>
+        <path id="Path_3626" data-name="Path 3626" d="M11.361,11.355c.17-.708.224-.992.224-.992H6.234a1.541,1.541,0,0,0-1.694,1.43c-.17.705-.224.993-.224.993H9.668a1.541,1.541,0,0,0,1.693-1.431Z" fill="#fff"/>
+      </g>
+    </g>
+  </g>
+</svg>

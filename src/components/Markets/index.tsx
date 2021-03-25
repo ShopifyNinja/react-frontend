@@ -138,7 +138,7 @@ export const Markets = (props: MarketsProps) => {
                 onSelect={props.onSelect}
                 titleComponent={title || 'Markets'}
             />
-            <FilterInput data={props.data} filter={searchFilter} placeholder={filterPlaceholder} />
+            {/* <FilterInput data={props.data} filter={searchFilter} placeholder={filterPlaceholder} /> */}
         </div>
     );
 };
