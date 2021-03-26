@@ -17,13 +17,14 @@ import {
     selectMobileDeviceState,
     selectUserLoggedIn,
     setCurrentPrice,
+    selectCurrentColorTheme
 } from '../../modules';
 import { recentTradesFetch, selectRecentTradesOfCurrentMarket } from '../../modules/public/recentTrades';
 import { RecentTradesMarket } from './Market';
 import { RecentTradesYours } from './Yours';
 import SearchIcon from '@material-ui/icons/Search';
 import {
-    TextField
+    Button
 } from '@material-ui/core';
 
 interface ReduxProps {
@@ -32,6 +33,7 @@ interface ReduxProps {
     currentPrice: number | undefined;
     userLoggedIn: boolean;
     isMobileDevice: boolean;
+    colorTheme: string;
 }
 
 interface DispatchProps {
@@ -105,10 +107,25 @@ class RecentTradesComponent extends React.Component<RecentTradesProps, State> {
             { icon: icon10, coinName1: 'BTC/TRY', coinName2: 'Bitcoin', graphic: graphic10, value1: "413.437.00", value2: "+1.92%" },
             { icon: icon11, coinName1: 'BTC/TRY', coinName2: 'Bitcoin', graphic: graphic11, value1: "413.437.00", value2: "+1.92%" }
         ]
+        const { colorTheme } = this.props;
 
         return (
             <div className={className}>
                 <div className={cn}>
+                    <div className="coin-container item">
+                        <Button variant="contained" className="recenttrades-btn">
+                            TRY
+                        </Button>
+                        <Button variant="contained" className="recenttrades-btn1">
+                            USDT
+                        </Button>
+                        <Button variant="contained" className="recenttrades-btn1">
+                            BTC
+                        </Button>
+                        <Button variant="contained" className="recenttrades-btn1">
+                            ETH
+                        </Button>
+                    </div>
                     <div className="search item">
                         <SearchIcon style={{ margin: '1.3rem' }} />
                         <input
@@ -125,10 +142,14 @@ class RecentTradesComponent extends React.Component<RecentTradesProps, State> {
                                         <div>{val.coinName1}</div>
                                         <div>{val.coinName2}</div>
                                     </div>
-                                    <img src={val.graphic} alt={val.graphic} />
+                                    <img
+                                        src={val.graphic}
+                                        alt={val.graphic}
+                                        className={colorTheme === "dark" ? "graphic-dark" : "graphic-right"}
+                                    />
                                     <div>
                                         <div>{val.value1}</div>
-                                        <div>{val.value2}</div>
+                                        <div style={{ color: '#57CA79' }}>{val.value2}</div>
                                     </div>
                                 </div>
                             )
@@ -196,6 +217,7 @@ const mapStateToProps = (state: RootState): ReduxProps => ({
     currentPrice: selectCurrentPrice(state),
     userLoggedIn: selectUserLoggedIn(state),
     isMobileDevice: selectMobileDeviceState(state),
+    colorTheme: selectCurrentColorTheme(state)
 });
 
 const mapDispatchToProps: MapDispatchToPropsFunction<DispatchProps, {}> = dispatch => ({

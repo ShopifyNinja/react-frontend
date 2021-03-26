@@ -25,6 +25,9 @@ import {
     Ticker,
 } from '../../modules';
 import { OrderCommon } from '../../modules/types';
+import {
+    Grid,
+} from '@material-ui/core';
 
 interface ReduxProps {
     asks: string[][];
@@ -190,6 +193,20 @@ class OrderBookContainer extends React.Component<Props, State> {
 
         return (
             <div className={cn} ref={this.orderRef}>
+                <Grid container className="header-container">
+                    <div>
+                        <div className="text-11">BTC/USD</div>
+                        <div className="text-15">$51.437</div>
+                    </div>
+                    <div className="header-middle">
+                        <div className="text-11">BTC/USD</div>
+                        <div className="text-15">€31.437</div>
+                    </div>
+                    <div>
+                        <div className="text-11">BTC/USD</div>
+                        <div className="text-15">0.031302 BTC</div>
+                    </div>
+                </Grid>
                 <div className={'cr-table-header__content'}>
                     {this.props.intl.formatMessage({ id: 'page.body.trade.orderbook' })}
                 </div>

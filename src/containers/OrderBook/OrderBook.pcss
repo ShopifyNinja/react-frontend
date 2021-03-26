@@ -2,6 +2,37 @@
   height: 100%;
   overflow: hidden;
 
+  .header-container{
+    background-color: #57B2F6;
+    padding: 7px 14px;
+    border-radius: 12px;
+    filter: drop-shadow(0px 12px 12px rgba(0, 0, 0, 0.1));
+    backdrop-filter: blur(30px);
+    --webkit-backdrop-filter: blur(30px);
+    margin-bottom: 30px;
+    display:flex;
+    justify-content:space-between;
+    height:66px;
+    .header-middle{
+      border-left:1px solid #fff;
+      border-right:1px solid #fff;
+      padding-left:15px;
+      padding-right:15px;
+    }
+    .text-11{
+      font-size: 11px;
+      line-height: 17px;
+      font-weight: 600;
+      color: #fff;
+      transition: all ease-in-out 300ms;
+      margin-bottom: 4px;
+    }
+    .text-15{
+      font-size: 15px;
+      color: #fff;
+    }
+  }
+
   &-loader {
     align-items: center;
     display: flex;
@@ -128,8 +159,8 @@
           thead {
             display: table;
             position: fixed;
-            top: 32px;
-            width: 100%;
+            top: 130px;
+            width: 90%;
             z-index: 2222;
           }
 
@@ -209,7 +240,7 @@
         &__head {
           display: table;
           position: fixed;
-          width: 50%;
+          width: 47%;
           z-index: 222;
 
           th:first-child {

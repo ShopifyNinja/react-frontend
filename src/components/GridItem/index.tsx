@@ -28,13 +28,13 @@ const GridItem: React.FunctionComponent<GridItemProps> = (props: GridItemProps) 
   const cx = classnames('cr-grid-item', className);
 
   return (
-    <div className={cx}>
+    <div className={cx} style={{ paddingLeft: 5, paddingRight: 15 }}>
       {title ? <div className="cr-grid-item__header">
         <div className="cr-grid-item__title">
           {title}
         </div>
       </div>
-      : null}
+        : null}
       <div className="cr-grid-item__body">{children}</div>
     </div>
   );

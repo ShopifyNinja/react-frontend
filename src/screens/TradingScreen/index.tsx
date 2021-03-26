@@ -260,41 +260,47 @@ class Trading extends React.Component<Props, StateProps> {
                             <Grid container>
                                 <Grid item xs={12} md={12}>
                                     <div className="main-row-container">
-                                        <div style={{ color: '#57B2F6', marginRight: 30 }}>Açık Emirlerim</div>
-                                        <div style={{ marginRight: 30 }}>İşlem Geçmişi</div>
-                                        <div style={{ marginRight: 30 }}>Alım/Satım Geçmişi</div>
+                                        <div style={{ color: '#57B2F6', marginRight: 30, cursor: 'pointer' }}>Açık Emirlerim</div>
+                                        <div style={{ marginRight: 30, cursor: 'pointer' }}>İşlem Geçmişi</div>
+                                        <div style={{ marginRight: 30, cursor: 'pointer' }}>Alım/Satım Geçmişi</div>
                                     </div>
                                     <TableContainer component={Paper}>
                                         <Table aria-label="simple table">
                                             <TableHead>
                                                 <TableRow>
-                                                    <TableCell>Tarih</TableCell>
-                                                    <TableCell align="center">Market</TableCell>
-                                                    <TableCell align="center">Tip</TableCell>
-                                                    <TableCell align="center">İşlem</TableCell>
-                                                    <TableCell align="center">Stop Fiyat (BTC)</TableCell>
-                                                    <TableCell align="center">Fiyat (BTC)</TableCell>
-                                                    <TableCell align="center">Miktar (ETH)</TableCell>
-                                                    <TableCell align="center">Toplam (BTC)</TableCell>
-                                                    <TableCell align="center">Kalan (ETH)</TableCell>
-                                                    <TableCell align="center">Gerçekleşen Mik.</TableCell>
-                                                    <TableCell align="right">Toplam (BTC)</TableCell>
+                                                    <TableCell className="table-tr">Tarih</TableCell>
+                                                    <TableCell align="center" className="table-tr">Market</TableCell>
+                                                    <TableCell align="center" className="table-tr">Tip</TableCell>
+                                                    <TableCell align="center" className="table-tr">İşlem</TableCell>
+                                                    <TableCell align="center" className="table-tr">Stop Fiyat (BTC)</TableCell>
+                                                    <TableCell align="center" className="table-tr">Fiyat (BTC)</TableCell>
+                                                    <TableCell align="center" className="table-tr">Miktar (ETH)</TableCell>
+                                                    <TableCell align="center" className="table-tr">Toplam (BTC)</TableCell>
+                                                    <TableCell align="center" className="table-tr">Kalan (ETH)</TableCell>
+                                                    <TableCell align="center" className="table-tr">Gerçekleşen Mik.</TableCell>
+                                                    <TableCell align="right" className="table-tr">Toplam (BTC)</TableCell>
+                                                    <TableCell align="right" className="table-tr"></TableCell>
                                                 </TableRow>
                                             </TableHead>
                                             <TableBody>
-                                                {rows.map((row) => (
-                                                    <TableRow key={row.history}>
-                                                        <TableCell component="th" scope="row">{row.history}</TableCell>
-                                                        <TableCell align="center" >{row.market}</TableCell>
-                                                        <TableCell align="center" >{row.medicine}</TableCell>
-                                                        <TableCell align="center" >{row.operation}</TableCell>
-                                                        <TableCell align="center" >{row.stopPrice}</TableCell>
-                                                        <TableCell align="center" >{row.price}</TableCell>
-                                                        <TableCell align="center" >{row.amount}</TableCell>
-                                                        <TableCell align="center" >{row.total1}</TableCell>
-                                                        <TableCell align="center" >{row.remainder}</TableCell>
-                                                        <TableCell align="center">{row.actual}</TableCell>
-                                                        <TableCell align="right">{row.total2}</TableCell>
+                                                {rows.map((row, index) => (
+                                                    <TableRow key={index}>
+                                                        <TableCell component="th" scope="row" className="table-tr">{row.history}</TableCell>
+                                                        <TableCell align="center" style={index === 0 || index === 1 ? { color: '#57CA79' } : { color: '#FF5640' }} className="table-tr" >{row.market}</TableCell>
+                                                        <TableCell align="center" style={index === 0 || index === 1 ? { color: '#57CA79' } : { color: '#FF5640' }} className="table-tr" >{row.medicine}</TableCell>
+                                                        <TableCell align="center" className="table-tr" >{row.operation}</TableCell>
+                                                        <TableCell align="center" className="table-tr" >{row.stopPrice}</TableCell>
+                                                        <TableCell align="center" className="table-tr" >{row.price}</TableCell>
+                                                        <TableCell align="center" className="table-tr" >{row.amount}</TableCell>
+                                                        <TableCell align="center" className="table-tr" >{row.total1}</TableCell>
+                                                        <TableCell align="center" className="table-tr" >{row.remainder}</TableCell>
+                                                        <TableCell align="center" className="table-tr">{row.actual}</TableCell>
+                                                        <TableCell align="right" className="table-tr">{row.total2}</TableCell>
+                                                        <TableCell align="right" className="table-tr">
+                                                            <Button variant="contained" className="btn-cancel">
+                                                                İptal et
+                                                            </Button>
+                                                        </TableCell>
                                                     </TableRow>
                                                 ))}
                                             </TableBody>
