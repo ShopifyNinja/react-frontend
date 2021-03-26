@@ -6,7 +6,6 @@ import {
 import { connect, MapDispatchToPropsFunction } from 'react-redux';
 import { compose } from 'redux';
 import { IntlProps } from '../../';
-import { TabPanel } from '../../components';
 import {
     Market,
     PublicTrade,
@@ -20,12 +19,8 @@ import {
     selectCurrentColorTheme
 } from '../../modules';
 import { recentTradesFetch, selectRecentTradesOfCurrentMarket } from '../../modules/public/recentTrades';
-import { RecentTradesMarket } from './Market';
-import { RecentTradesYours } from './Yours';
-import SearchIcon from '@material-ui/icons/Search';
-import {
-    Button
-} from '@material-ui/core';
+import Header from 'src/components/CoinHeader';
+import CoinList from 'src/components/CoinList'
 
 interface ReduxProps {
     recentTrades: PublicTrade[];
@@ -112,46 +107,20 @@ class RecentTradesComponent extends React.Component<RecentTradesProps, State> {
         return (
             <div className={className}>
                 <div className={cn}>
-                    <div className="coin-container item">
-                        <Button variant="contained" className="recenttrades-btn">
-                            TRY
-                        </Button>
-                        <Button variant="contained" className="recenttrades-btn1">
-                            USDT
-                        </Button>
-                        <Button variant="contained" className="recenttrades-btn1">
-                            BTC
-                        </Button>
-                        <Button variant="contained" className="recenttrades-btn1">
-                            ETH
-                        </Button>
-                    </div>
-                    <div className="search item">
-                        <SearchIcon style={{ margin: '1.3rem' }} />
-                        <input
-                            className="search-form"
-                            placeholder="Hızlı bir arama yapın"
-                        />
-                    </div>
+                    {this.renderHeader()}
                     {
                         Itemdata.map((val, index) => {
                             return (
-                                <div className="coin-container item">
-                                    <img src={val.icon} alt={val.icon} />
-                                    <div>
-                                        <div>{val.coinName1}</div>
-                                        <div>{val.coinName2}</div>
-                                    </div>
-                                    <img
-                                        src={val.graphic}
-                                        alt={val.graphic}
-                                        className={colorTheme === "dark" ? "graphic-dark" : "graphic-right"}
-                                    />
-                                    <div>
-                                        <div>{val.value1}</div>
-                                        <div style={{ color: '#57CA79' }}>{val.value2}</div>
-                                    </div>
-                                </div>
+                                <CoinList
+                                    key={index}
+                                    icon={val.icon}
+                                    coinName1={val.coinName1}
+                                    coinName2={val.coinName2}
+                                    graphic={val.graphic}
+                                    colorTheme={colorTheme}
+                                    value1={val.value1}
+                                    value2={val.value2}
+                                />
                             )
                         })
                     }
@@ -160,55 +129,11 @@ class RecentTradesComponent extends React.Component<RecentTradesProps, State> {
         );
     }
 
-    private renderContent = () => {
-        const { isMobileDevice } = this.props;
-
-        return this.props.userLoggedIn ?
-            (
-                <TabPanel
-                    panels={this.renderTabs()}
-                    onTabChange={this.handleMakeRequest}
-                    optionalHead={this.props.intl.formatMessage({ id: 'page.body.trade.header.recentTrades' })}
-                    currentTabIndex={this.state.index}
-                    isMobileDevice={isMobileDevice}
-                />
-            ) :
-            (
-                <div>
-                    <div className="cr-table-header__content">
-                        <div className="cr-title-component">{this.props.intl.formatMessage({ id: 'page.body.trade.header.recentTrades' })}</div>
-                    </div>
-                    <RecentTradesMarket />
-                </div>
-            );
-
-    };
-
-    private renderTabs = () => {
-        const { tab, index } = this.state;
-
-        return [
-            {
-                content: tab === 'market' && index === 0 ? <RecentTradesMarket /> : null,
-                label: this.props.intl.formatMessage({ id: 'page.body.trade.header.market' }),
-            },
-            {
-                content: tab === 'yours' ? <RecentTradesYours /> : null,
-                label: this.props.intl.formatMessage({ id: 'page.body.trade.header.yours' }),
-            },
-        ];
-    };
-
-    private handleMakeRequest = (index: number) => {
-        if (this.state.tab === this.tabMapping[index]) {
-            return;
-        }
-
-        this.setState({
-            tab: this.tabMapping[index],
-            index: index,
-        });
-    };
+    private renderHeader = () => {
+        return (
+            <Header />
+        )
+    }
 }
 
 const mapStateToProps = (state: RootState): ReduxProps => ({

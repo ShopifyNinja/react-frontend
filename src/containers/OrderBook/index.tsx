@@ -25,9 +25,8 @@ import {
     Ticker,
 } from '../../modules';
 import { OrderCommon } from '../../modules/types';
-import {
-    Grid,
-} from '@material-ui/core';
+import OrderBookHeader from 'src/components/OrderBookHeader';
+
 
 interface ReduxProps {
     asks: string[][];
@@ -162,14 +161,12 @@ class OrderBookContainer extends React.Component<Props, State> {
                         {Decimal.format(lastPrice, currentMarket.price_precision, ',')}&nbsp;
                         {isMobileDevice ? null : currentMarket.quote_unit.toUpperCase()}
                     </span>
-                    {/* <span>{this.props.intl.formatMessage({id: 'page.body.trade.orderbook.lastMarket'})}</span> */}
                 </React.Fragment>
             );
         } else {
             return (
                 <React.Fragment>
                     <span className={'cr-combined-order-book__market-negative'}>0</span>
-                    {/* <span>{this.props.intl.formatMessage({id: 'page.body.trade.orderbook.lastMarket'})}</span> */}
                 </React.Fragment>
             );
         }
@@ -193,26 +190,19 @@ class OrderBookContainer extends React.Component<Props, State> {
 
         return (
             <div className={cn} ref={this.orderRef}>
-                <Grid container className="header-container">
-                    <div>
-                        <div className="text-11">BTC/USD</div>
-                        <div className="text-15">$51.437</div>
-                    </div>
-                    <div className="header-middle">
-                        <div className="text-11">BTC/USD</div>
-                        <div className="text-15">€31.437</div>
-                    </div>
-                    <div>
-                        <div className="text-11">BTC/USD</div>
-                        <div className="text-15">0.031302 BTC</div>
-                    </div>
-                </Grid>
+                {this.renderHeader()}
                 <div className={'cr-table-header__content'}>
                     {this.props.intl.formatMessage({ id: 'page.body.trade.orderbook' })}
                 </div>
                 {orderBookLoading ? <div className="pg-combined-order-book-loader"><Spinner animation="border" variant="primary" /></div> : this.orderBook(bids, asks)}
             </div>
         );
+    }
+
+    private renderHeader = () => {
+        return (
+            <OrderBookHeader />
+        )
     }
 
     private orderBook = (bids, asks) => {

@@ -188,18 +188,6 @@ export const TabPanel: React.FC<TabPanelProps> = ({
             className={classnames('cr-tab-panel', {
                 'cr-tab-panel__fixed': fixed,
             })}>
-            {/* <div className="cr-tab-panel__navigation-container draggable-container" style={{ marginBottom: 30 }}>
-                <div>
-                    <div>BTC/TRY</div>
-                    <div>BTC/TRY</div>
-                </div>
-                <div>
-                    <div>BTC/TRY</div>
-                    <div>BTC/TRY</div>
-                </div>
-                {tabPanelRender()}
-                {optionalHead && <div className="cr-tab-panel__optinal-head">{optionalHead}</div>}
-            </div> */}
             <Grid container className="header-container">
                 <Grid item xs={4} className="row-container header-left">
                     <div className="row-container">

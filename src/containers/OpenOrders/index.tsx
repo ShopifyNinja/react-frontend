@@ -3,7 +3,7 @@ import * as React from 'react';
 import { Spinner } from 'react-bootstrap';
 import { FormattedMessage, injectIntl } from 'react-intl';
 import { connect, MapDispatchToPropsFunction } from 'react-redux';
-import { IntlProps } from '../../';
+import { IntlProps } from '../..';
 import { CloseIcon } from '../../assets/images/CloseIcon';
 import { Decimal, OpenOrders } from '../../components';
 import { localeDate, setTradeColor } from '../../helpers';
@@ -42,6 +42,18 @@ interface DispatchProps {
 type Props = ReduxProps & DispatchProps & IntlProps;
 
 export class OpenOrdersContainer extends React.Component<Props> {
+    constructor(props) {
+        super(props);
+        this.state = {
+            al_price: '413.437.00',
+            al_amount: '413.437.00',
+            al_total: '413.437.00',
+            sat_price: '413.437.00',
+            sat_amount: '413.437.00',
+            sat_total: '413.437.00'
+        }
+    }
+
     public componentDidMount() {
         const { currentMarket, userLoggedIn } = this.props;
         if (userLoggedIn && currentMarket) {
@@ -87,7 +99,11 @@ export class OpenOrdersContainer extends React.Component<Props> {
                                     {this.translate('page.body.openOrders.header.button.bring')}
                                 </Button>
                             </div>
-                            <input value="413.437.00" />
+                            <input
+                                className="input-form"
+                                value={this.state.al_price}
+                                onChange={(e) => { this.setState({ al_price: e.target.value }) }}
+                            />
                         </div>
                         <div className="row-container column-item">
                             <div className="row-container" style={{ justifyContent: 'space-between', width: '50%' }}>
@@ -96,11 +112,21 @@ export class OpenOrdersContainer extends React.Component<Props> {
                                     {this.translate('page.body.openOrders.header.button.maximum')}
                                 </Button>
                             </div>
-                            <input value="413.437.00" />
+                            <input
+                                value="413.437.00"
+                                className="input-form"
+                                value={this.state.al_amount}
+                                onChange={(e) => { this.setState({ al_amount: e.target.value }) }}
+                            />
                         </div>
                         <div className="row-container column-item">
                             <div className="fontsize-12">{this.translate('page.body.trade.header.markets.content.last_price')}</div>
-                            <input value="413.437.00" />
+                            <input
+                                value="413.437.00"
+                                className="input-form al-total"
+                                value={this.state.al_total}
+                                onChange={(e) => { this.setState({ al_total: e.target.value }) }}
+                            />
                         </div>
                         <Button variant="contained" color="primary" className="btn-btc-al">
                             BTC AL
@@ -118,7 +144,12 @@ export class OpenOrdersContainer extends React.Component<Props> {
                                     {this.translate('page.body.openOrders.header.button.bring')}
                                 </Button>
                             </div>
-                            <input value="413.437.00" />
+                            <input
+                                value="413.437.00"
+                                className="input-form"
+                                value={this.state.sat_price}
+                                onChange={(e) => { this.setState({ sat_price: e.target.value }) }}
+                            />
                         </div>
                         <div className="row-container column-item">
                             <div className="row-container" style={{ justifyContent: 'space-between', width: '50%' }}>
@@ -136,28 +167,27 @@ export class OpenOrdersContainer extends React.Component<Props> {
                                     %100
                                 </div>
                             </div>
-                            <input value="413.437.00" />
+                            <input
+                                value="413.437.00"
+                                className="input-form"
+                                value={this.state.sat_amount}
+                                onChange={(e) => { this.setState({ sat_amount: e.target.value }) }}
+                            />
                         </div>
                         <div className="row-container column-item">
                             <div className="fontsize-12">{this.translate('page.body.trade.header.markets.content.last_price')}</div>
-                            <input value="413.437.00" />
+                            <input
+                                value="413.437.00"
+                                className="input-form sat-total"
+                                value={this.state.sat_total}
+                                onChange={(e) => { this.setState({ sat_total: e.target.value }) }}
+                            />
                         </div>
                         <Button variant="contained" color="primary" className="btn-btc-sat">
                             BTC AL
                         </Button>
                     </Grid>
                 </Grid>
-                {/* <div className={classNames}> */}
-                {/* <div className="cr-table-header__content">
-                    <div className="cr-title-component">
-                        <FormattedMessage id="page.body.trade.header.openOrders" />
-                        <span className="cr-table-header__cancel" onClick={this.handleCancelAll}>
-                            <FormattedMessage id="page.body.openOrders.header.button.cancelAll" />
-                            <CloseIcon className="cr-table-header__close" />
-                        </span>
-                    </div>
-                </div>
-                {fetching ? <div className="open-order-loading"><Spinner animation="border" variant="primary" /></div> : this.openOrders()} */}
             </div>
         );
     }

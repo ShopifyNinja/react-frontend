@@ -65,19 +65,30 @@ const noHeaderRoutes = ['/confirm', '/404', '/500', '/setup'];
 type Props = ReduxProps & DispatchProps & IntlProps & LocationProps;
 
 class Head extends React.Component<Props> {
-    // const [anchorEl, setAnchorEl] = React.useState(null);
-    // const history = useHistory()
-
-    // const handleClick = (event) => {
-    //     setAnchorEl(event.currentTarget);
-    // };
-
-    // const handleClose = () => {
-    //     setAnchorEl(null);
-    // };
     constructor(props) {
         super(props);
-        this.state = { anchorEl: null }
+        this.state = {
+            anchorEl: null,
+            scrolling: false
+        }
+    }
+
+    componentDidMount() {
+        window.addEventListener('scroll', this.handleScroll);
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener('scroll', this.handleScroll);
+    }
+
+    handleScroll = () => {
+        if (window.pageYOffset > 0) {
+            console.log('12312')
+            this.setState({ scrolling: true })
+        } else {
+            console.log('safasd')
+            this.setState({ scrolling: false })
+        }
     }
 
     handleClick(event) {
@@ -89,7 +100,7 @@ class Head extends React.Component<Props> {
     };
 
     public render() {
-        const anchor = this.state;
+        let anchor = this.state;
         const { mobileWallet, location } = this.props;
         const tradingCls = location.pathname.includes('/trading') ? 'pg-container-trading' : '';
         const shouldRenderHeader =
@@ -100,7 +111,7 @@ class Head extends React.Component<Props> {
         }
 
         return (
-            <header className={`pg-header`}>
+            <header className={anchor.scrolling ? `fixed` : `pg-header`}>
                 <div className={`pg-container pg-header__content ${tradingCls}`}>
                     {/* <div
                         className={`pg-sidebar__toggler ${mobileWallet && 'pg-sidebar__toggler-mobile'}`}
@@ -112,16 +123,10 @@ class Head extends React.Component<Props> {
                     <div onClick={(e) => this.redirectToLanding()} className="pg-header__logo">
                         <Logo />
                     </div>
-                    {/* {this.renderMarketToggler()}
-                    <div className="pg-header__location">
-                        {mobileWallet ? <span>{mobileWallet}</span> : <span>{location.pathname.split('/')[1]}</span>}
-                    </div>
-                    {this.renderMobileWalletNav()} */}
                     <div className="pg-header__navbar">
                         <div className="menu-item">ASCOINDEX</div>
                         <div
                             className="menu-item"
-                        // onClick={() => { history.push('/trading') }}
                         >AL-SAT</div>
                         <div className="menu-item">DESTEK</div>
                         <div className="menu-item">ORTAKLIK</div>
@@ -138,9 +143,9 @@ class Head extends React.Component<Props> {
                             </div>
                             <Menu
                                 id="simple-menu"
-                                // anchorEl={this.state.anchorEl}
+                                anchorEl={anchor.anchorEl}
                                 keepMounted
-                                // open={Boolean(this.state.anchorEl)}
+                                open={Boolean(anchor.anchorEl)}
                                 onClose={this.handleClose}
                             >
                                 <MenuItem onClick={this.handleClose}>TR</MenuItem>
@@ -149,15 +154,15 @@ class Head extends React.Component<Props> {
                         </div>
                         <NavBar onLinkChange={this.closeMenu} />
                         <div className="menu-item">
-                            <div aria-controls="simple-menu" aria-haspopup="true" onClick={this.handleClick} style={{ display: 'flex' }}>
+                            <div aria-controls="simple-menu" aria-haspopup="true" onClick={this.handleClick} style={{ display: 'flex', color: '#57B2F6' }}>
                                 50.000 ₺
                                 <ExpandMoreIcon />
                             </div>
                             <Menu
                                 id="simple-menu"
-                                // anchorEl={this.state.anchorEl}
+                                anchorEl={anchor.anchorEl}
                                 keepMounted
-                                // open={Boolean(this.state.anchorEl)}
+                                open={Boolean(anchor.anchorEl)}
                                 onClose={this.handleClose}
                             >
                                 <MenuItem onClick={this.handleClose}>???</MenuItem>
