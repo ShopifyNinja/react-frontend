@@ -227,7 +227,7 @@ class Trading extends React.Component<Props, StateProps> {
                                 handeDrag={this.handeDrag}
                             />
                         </div>
-                        <div className="cr-grid__grid-wrapper">
+                        <div className="cr-grid__grid-wrapper history-table-container">
                             {this.renderHistoryTable()}
                         </div>
                     </div>

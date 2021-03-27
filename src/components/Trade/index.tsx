@@ -21,18 +21,18 @@ function Trade() {
                     <div className="row-container column-item">
                         <div className="row-container" style={{ justifyContent: 'space-between', width: '50%' }}>
                             <div className="fontsize-12">{this.translate('page.body.trade.header.markets.content.pair')}</div>
-                            <Button variant="contained" className="btn-maximum">
+                            <div className="btn-maximum">
                                 {this.translate('page.body.openOrders.header.button.bring')}
-                            </Button>
+                            </div>
                         </div>
                         <input value="413.437.00" className="input-form" />
                     </div>
                     <div className="row-container column-item">
                         <div className="row-container" style={{ justifyContent: 'space-between', width: '50%' }}>
                             <div className="fontsize-12">{this.translate('page.body.trade.header.markets.content.price')}</div>
-                            <Button variant="contained" className="btn-maximum">
+                            <div className="btn-maximum">
                                 {this.translate('page.body.openOrders.header.button.maximum')}
-                            </Button>
+                            </div>
                         </div>
                         <input value="413.437.00" className="input-form" />
                     </div>
@@ -52,9 +52,9 @@ function Trade() {
                     <div className="row-container column-item">
                         <div className="row-container" style={{ justifyContent: 'space-between', width: '50%' }}>
                             <div className="fontsize-12">{this.translate('page.body.trade.header.markets.content.pair')}</div>
-                            <Button variant="contained" className="btn-maximum">
+                            <div className="btn-maximum">
                                 {this.translate('page.body.openOrders.header.button.bring')}
-                            </Button>
+                            </div>
                         </div>
                         <input value="413.437.00" className="input-form" />
                     </div>

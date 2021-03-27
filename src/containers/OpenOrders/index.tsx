@@ -4,9 +4,6 @@ import { Spinner } from 'react-bootstrap';
 import { FormattedMessage, injectIntl } from 'react-intl';
 import { connect, MapDispatchToPropsFunction } from 'react-redux';
 import { IntlProps } from '../..';
-import { CloseIcon } from '../../assets/images/CloseIcon';
-import { Decimal, OpenOrders } from '../../components';
-import { localeDate, setTradeColor } from '../../helpers';
 import {
     Market,
     openOrdersCancelFetch,
@@ -33,6 +30,15 @@ interface ReduxProps {
     userLoggedIn: boolean;
 }
 
+interface SetupFormState {
+    al_price: string;
+    al_amount: string;
+    al_total: string;
+    sat_price: string;
+    sat_amount: string;
+    sat_total: string;
+}
+
 interface DispatchProps {
     userOpenOrdersFetch: typeof userOpenOrdersFetch;
     openOrdersCancelFetch: typeof openOrdersCancelFetch;
@@ -41,7 +47,7 @@ interface DispatchProps {
 
 type Props = ReduxProps & DispatchProps & IntlProps;
 
-export class OpenOrdersContainer extends React.Component<Props> {
+export class OpenOrdersContainer extends React.Component<Props, SetupFormState> {
     constructor(props) {
         super(props);
         this.state = {
@@ -73,58 +79,53 @@ export class OpenOrdersContainer extends React.Component<Props> {
     }
 
     public render() {
+        const { al_price, al_total, al_amount, sat_price, sat_amount, sat_total } = this.state;
         const { list, fetching } = this.props;
-        const classNames = classnames('pg-open-orders', {
-            'pg-open-orders--empty': !list.length,
-            'pg-open-orders--loading': fetching,
-        });
 
         return (
             <div className="pg-open-orders--empty">
-                <div className="row-container">
+                <div className="row-container" style={{ marginTop: 15, marginBottom: 20 }}>
                     <div className="btn-limit">{this.translate('page.body.openOrders.header.button.limit')}</div>
                     <div className="btn-market">{this.translate('page.body.openOrders.header.button.market')}</div>
                     <div className="btn-market">{this.translate('page.body.openOrders.header.button.stopLimit')}</div>
                 </div>
                 <Grid container>
                     <Grid item xs={12} md={6} style={{ paddingRight: 10 }}>
-                        <div className="row-container" style={{ justifyContent: 'space-between' }}>
+                        <div className="row-container" style={{ justifyContent: 'space-between', marginBottom: 10 }}>
                             <div className="fontsize-15">BTC AL</div>
-                            <div className="fontsize-12">Bakiye : 50.000 ₺</div>
+                            <div className="fontsize-12" style={{ color: '#7A7C83' }}>Bakiye : 50.000 ₺</div>
                         </div>
                         <div className="row-container column-item">
                             <div className="row-container" style={{ justifyContent: 'space-between', width: '50%' }}>
                                 <div className="fontsize-12">{this.translate('page.body.trade.header.markets.content.pair')}</div>
-                                <Button variant="contained" className="btn-maximum">
+                                <div className="btn-maximum">
                                     {this.translate('page.body.openOrders.header.button.bring')}
-                                </Button>
+                                </div>
                             </div>
                             <input
                                 className="input-form"
-                                value={this.state.al_price}
+                                value={al_price}
                                 onChange={(e) => { this.setState({ al_price: e.target.value }) }}
                             />
                         </div>
                         <div className="row-container column-item">
                             <div className="row-container" style={{ justifyContent: 'space-between', width: '50%' }}>
                                 <div className="fontsize-12">{this.translate('page.body.trade.header.markets.content.price')}</div>
-                                <Button variant="contained" className="btn-maximum">
+                                <div className="btn-maximum">
                                     {this.translate('page.body.openOrders.header.button.maximum')}
-                                </Button>
+                                </div>
                             </div>
                             <input
-                                value="413.437.00"
                                 className="input-form"
-                                value={this.state.al_amount}
+                                value={al_amount}
                                 onChange={(e) => { this.setState({ al_amount: e.target.value }) }}
                             />
                         </div>
                         <div className="row-container column-item">
                             <div className="fontsize-12">{this.translate('page.body.trade.header.markets.content.last_price')}</div>
                             <input
-                                value="413.437.00"
                                 className="input-form al-total"
-                                value={this.state.al_total}
+                                value={al_total}
                                 onChange={(e) => { this.setState({ al_total: e.target.value }) }}
                             />
                         </div>
@@ -133,21 +134,20 @@ export class OpenOrdersContainer extends React.Component<Props> {
                         </Button>
                     </Grid>
                     <Grid item xs={12} md={6} style={{ paddingLeft: 10 }}>
-                        <div className="row-container" style={{ justifyContent: 'space-between' }}>
+                        <div className="row-container" style={{ justifyContent: 'space-between', marginBottom: 10 }}>
                             <div className="fontsize-15">BTC SAT</div>
-                            <div className="fontsize-12">Bakiye : 0.0410021 BTC</div>
+                            <div className="fontsize-12" style={{ color: '#7A7C83' }}>Bakiye : 0.0410021 BTC</div>
                         </div>
                         <div className="row-container column-item">
                             <div className="row-container" style={{ justifyContent: 'space-between', width: '50%' }}>
                                 <div className="fontsize-12">{this.translate('page.body.trade.header.markets.content.pair')}</div>
-                                <Button variant="contained" className="btn-maximum">
+                                <div className="btn-maximum">
                                     {this.translate('page.body.openOrders.header.button.bring')}
-                                </Button>
+                                </div>
                             </div>
                             <input
-                                value="413.437.00"
                                 className="input-form"
-                                value={this.state.sat_price}
+                                value={sat_price}
                                 onChange={(e) => { this.setState({ sat_price: e.target.value }) }}
                             />
                         </div>
@@ -168,18 +168,16 @@ export class OpenOrdersContainer extends React.Component<Props> {
                                 </div>
                             </div>
                             <input
-                                value="413.437.00"
                                 className="input-form"
-                                value={this.state.sat_amount}
+                                value={sat_amount}
                                 onChange={(e) => { this.setState({ sat_amount: e.target.value }) }}
                             />
                         </div>
                         <div className="row-container column-item">
                             <div className="fontsize-12">{this.translate('page.body.trade.header.markets.content.last_price')}</div>
                             <input
-                                value="413.437.00"
                                 className="input-form sat-total"
-                                value={this.state.sat_total}
+                                value={sat_total}
                                 onChange={(e) => { this.setState({ sat_total: e.target.value }) }}
                             />
                         </div>
@@ -192,81 +190,7 @@ export class OpenOrdersContainer extends React.Component<Props> {
         );
     }
 
-    private renderHeadersKeys = () => {
-        return [
-            'Date',
-            'Price',
-            'Amount',
-            'Total',
-            'Filled',
-            '',
-        ];
-    };
-
-    private renderHeaders = () => {
-        const currentAskUnit = this.props.currentMarket ? ` (${this.props.currentMarket.base_unit.toUpperCase()})` : '';
-        const currentBidUnit = this.props.currentMarket ? ` (${this.props.currentMarket.quote_unit.toUpperCase()})` : '';
-
-        return [
-            this.translate('page.body.trade.header.openOrders.content.date'),
-            this.translate('page.body.trade.header.openOrders.content.price').concat(currentBidUnit),
-            this.translate('page.body.trade.header.openOrders.content.amount').concat(currentAskUnit),
-            this.translate('page.body.trade.header.openOrders.content.total').concat(currentBidUnit),
-            this.translate('page.body.trade.header.openOrders.content.filled'),
-            '',
-        ];
-    };
-
-    private openOrders = () => {
-        return (
-            <OpenOrders
-                headersKeys={this.renderHeadersKeys()}
-                headers={this.renderHeaders()}
-                data={this.renderData()}
-                onCancel={this.handleCancel}
-            />
-        );
-    };
-
-    private renderData = () => {
-        const { list, currentMarket } = this.props;
-
-        if (list.length === 0) {
-            return [[[''], [''], this.translate('page.noDataToShow')]];
-        }
-
-        return list.map((item: OrderCommon) => {
-            const { id, price, created_at, remaining_volume, origin_volume, side } = item;
-            const executedVolume = Number(origin_volume) - Number(remaining_volume);
-            const remainingAmount = Number(remaining_volume);
-            const total = Number(origin_volume) * Number(price);
-            const filled = ((executedVolume / Number(origin_volume)) * 100).toFixed(2);
-            const priceFixed = currentMarket ? currentMarket.price_precision : 0;
-            const amountFixed = currentMarket ? currentMarket.amount_precision : 0;
-
-            return [
-                localeDate(created_at, 'fullDate'),
-                <span style={{ color: setTradeColor(side).color }} key={id}>{Decimal.format(price, priceFixed, ',')}</span>,
-                <span style={{ color: setTradeColor(side).color }} key={id}>{Decimal.format(remainingAmount, amountFixed, ',')}</span>,
-                <span style={{ color: setTradeColor(side).color }} key={id}>{Decimal.format(total, amountFixed, ',')}</span>,
-                <span style={{ color: setTradeColor(side).color }} key={id}>{filled}%</span>,
-                side,
-            ];
-        });
-    };
-
     private translate = (e: string) => this.props.intl.formatMessage({ id: e });
-
-    private handleCancel = (index: number) => {
-        const { list } = this.props;
-        const orderToDelete = list[index];
-        this.props.openOrdersCancelFetch({ order: orderToDelete, list });
-    };
-
-    private handleCancelAll = () => {
-        const { currentMarket } = this.props;
-        currentMarket && this.props.ordersCancelAll({ market: currentMarket.id });
-    };
 }
 
 const mapStateToProps = (state: RootState): ReduxProps => ({

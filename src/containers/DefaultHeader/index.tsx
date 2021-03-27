@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Logo } from '../../components';
 import { NavBar } from '../NavBar';
 import {
@@ -11,6 +11,7 @@ import { useHistory } from 'react-router-dom'
 
 const DefaultHeader = () => {
     const [anchorEl, setAnchorEl] = React.useState(null);
+    const [scrolling, setScrolling] = React.useState(false);
     const history = useHistory()
 
     const handleClick = (event) => {
@@ -20,8 +21,20 @@ const DefaultHeader = () => {
     const handleClose = () => {
         setAnchorEl(null);
     };
+
+    useEffect(() => {
+        window.addEventListener('scroll', handleScroll);
+    }, [])
+
+    const handleScroll = () => {
+        if (window.pageYOffset > 0)
+            setScrolling(true);
+        else
+            setScrolling(false);
+    }
+
     return (
-        <header className="pg-header">
+        <header className={scrolling ? `fixed` : `pg-header`}>
             <div className={`pg-container pg-header__content`}>
                 <div className="pg-header__logo">
                     <Logo />

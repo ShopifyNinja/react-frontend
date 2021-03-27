@@ -4,6 +4,7 @@ import { DropdownComponent } from '../Dropdown';
 import {
     Grid,
 } from '@material-ui/core';
+import AccessTimeIcon from '@material-ui/icons/AccessTime';
 
 export enum HideMode {
     hide = 'hide',
@@ -201,10 +202,30 @@ export const TabPanel: React.FC<TabPanelProps> = ({
                 </Grid>
                 <Grid item xs={8} className="header-right">
                     <div className="row-container" style={{ marginBottom: 20 }}>
-                        <div className="text-11">24 / Değişim</div>
-                        <div className="text-11">24 / En Yüksek</div>
-                        <div className="text-11">24 / En Düşük</div>
-                        <div className="text-11">24 / Hacim</div>
+                        <div className="text-11">
+                            <AccessTimeIcon
+                                style={{ marginRight: 3 }}
+                            />
+                            24 / Değişim
+                        </div>
+                        <div className="text-11">
+                            <AccessTimeIcon
+                                style={{ marginRight: 3 }}
+                            />
+                            24 / En Yüksek
+                        </div>
+                        <div className="text-11">
+                            <AccessTimeIcon
+                                style={{ marginRight: 3 }}
+                            />
+                            24 / En Düşük
+                        </div>
+                        <div className="text-11">
+                            <AccessTimeIcon
+                                style={{ marginRight: 3 }}
+                            />
+                            24 / Hacim
+                        </div>
                     </div>
                     <div className="row-container">
                         <div className="text-12">7.803 +1.92%</div>

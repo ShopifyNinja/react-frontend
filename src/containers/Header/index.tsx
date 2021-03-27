@@ -19,14 +19,7 @@ import {
     toggleMarketSelector,
     toggleSidebar,
 } from '../../modules';
-import { HeaderToolbar } from '../HeaderToolbar';
 import { NavBar } from '../NavBar';
-
-import arrowBottom from './arrows/arrowBottom.svg';
-import arrowBottomLight from './arrows/arrowBottomLight.svg';
-import arrowRight from './arrows/arrowRight.svg';
-import arrowRightLight from './arrows/arrowRightLight.svg';
-
 import backIcon from './back.svg';
 import backLightIcon from './backLight.svg';
 import {
@@ -38,7 +31,6 @@ import {
 import AccountBalanceWalletIcon from '@material-ui/icons/AccountBalanceWallet';
 import PersonIcon from '@material-ui/icons/Person';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import { useHistory } from 'react-router-dom'
 
 interface ReduxProps {
     currentMarket: Market | undefined;
@@ -46,6 +38,12 @@ interface ReduxProps {
     mobileWallet: string;
     sidebarOpened: boolean;
     marketSelectorOpened: boolean;
+}
+
+interface SetupFormState {
+    anchorEl: null;
+    anchorEl1: null;
+    scrolling: boolean;
 }
 
 interface DispatchProps {
@@ -64,11 +62,12 @@ const noHeaderRoutes = ['/confirm', '/404', '/500', '/setup'];
 
 type Props = ReduxProps & DispatchProps & IntlProps & LocationProps;
 
-class Head extends React.Component<Props> {
+class Head extends React.Component<Props, SetupFormState> {
     constructor(props) {
         super(props);
         this.state = {
             anchorEl: null,
+            anchorEl1: null,
             scrolling: false
         }
     }
@@ -82,26 +81,15 @@ class Head extends React.Component<Props> {
     }
 
     handleScroll = () => {
-        if (window.pageYOffset > 0) {
-            console.log('12312')
+        if (window.pageYOffset > 0)
             this.setState({ scrolling: true })
-        } else {
-            console.log('safasd')
+        else
             this.setState({ scrolling: false })
-        }
     }
 
-    handleClick(event) {
-        this.setState({ anchorEl: event.currentTarget })
-    };
-
-    handleClose() {
-        this.setState({ anchorEl: null })
-    };
-
     public render() {
-        let anchor = this.state;
-        const { mobileWallet, location } = this.props;
+        const { anchorEl, anchorEl1, scrolling } = this.state;
+        const { location } = this.props;
         const tradingCls = location.pathname.includes('/trading') ? 'pg-container-trading' : '';
         const shouldRenderHeader =
             !noHeaderRoutes.some((r) => location.pathname.includes(r)) && location.pathname !== '/';
@@ -111,7 +99,7 @@ class Head extends React.Component<Props> {
         }
 
         return (
-            <header className={anchor.scrolling ? `fixed` : `pg-header`}>
+            <header className={scrolling ? `fixed` : `pg-header`}>
                 <div className={`pg-container pg-header__content ${tradingCls}`}>
                     {/* <div
                         className={`pg-sidebar__toggler ${mobileWallet && 'pg-sidebar__toggler-mobile'}`}
@@ -132,20 +120,20 @@ class Head extends React.Component<Props> {
                         <div className="menu-item">ORTAKLIK</div>
                         <div className="menu-item">BLOG</div>
                         <ButtonGroup size="small" aria-label="small outlined button group" className="menu-item">
-                            <Button>Pro</Button>
-                            <Button>Kolay</Button>
-                            <Button>Hızlı</Button>
+                            <Button className="btn-group-item">Pro</Button>
+                            <Button className="btn-group-item">Kolay</Button>
+                            <Button className="btn-group-item">Hızlı</Button>
                         </ButtonGroup>
                         <div className="menu-item">
-                            <div aria-controls="simple-menu" aria-haspopup="true" onClick={this.handleClick} style={{ display: 'flex' }}>
+                            <div aria-controls="simple-menu" aria-haspopup="true" onClick={(e) => this.handleClick(e)} style={{ display: 'flex' }}>
                                 TR
                                 <ExpandMoreIcon />
                             </div>
                             <Menu
                                 id="simple-menu"
-                                anchorEl={anchor.anchorEl}
+                                anchorEl={anchorEl}
                                 keepMounted
-                                open={Boolean(anchor.anchorEl)}
+                                open={Boolean(anchorEl)}
                                 onClose={this.handleClose}
                             >
                                 <MenuItem onClick={this.handleClose}>TR</MenuItem>
@@ -154,20 +142,20 @@ class Head extends React.Component<Props> {
                         </div>
                         <NavBar onLinkChange={this.closeMenu} />
                         <div className="menu-item">
-                            <div aria-controls="simple-menu" aria-haspopup="true" onClick={this.handleClick} style={{ display: 'flex', color: '#57B2F6' }}>
+                            <div aria-controls="simple-menu" aria-haspopup="true" onClick={this.handleClick1} style={{ display: 'flex', color: '#57B2F6' }}>
                                 50.000 ₺
                                 <ExpandMoreIcon />
                             </div>
                             <Menu
                                 id="simple-menu"
-                                anchorEl={anchor.anchorEl}
+                                anchorEl={anchorEl1}
                                 keepMounted
-                                open={Boolean(anchor.anchorEl)}
-                                onClose={this.handleClose}
+                                open={Boolean(anchorEl1)}
+                                onClose={this.handleClose1}
                             >
-                                <MenuItem onClick={this.handleClose}>???</MenuItem>
-                                <MenuItem onClick={this.handleClose}>???</MenuItem>
-                                <MenuItem onClick={this.handleClose}>???</MenuItem>
+                                <MenuItem onClick={this.handleClose1}>???</MenuItem>
+                                <MenuItem onClick={this.handleClose1}>???</MenuItem>
+                                <MenuItem onClick={this.handleClose1}>???</MenuItem>
                             </Menu>
                         </div>
                         <Button variant="contained" className="menu-item btn-login1">
@@ -184,6 +172,22 @@ class Head extends React.Component<Props> {
         );
     }
 
+    private handleClick = (event) => {
+        this.setState({ anchorEl: event.currentTarget })
+    };
+
+    private handleClose = () => {
+        this.setState({ anchorEl: null })
+    };
+
+    private handleClick1 = (event) => {
+        this.setState({ anchorEl1: event.currentTarget })
+    };
+
+    private handleClose1 = () => {
+        this.setState({ anchorEl1: null })
+    };
+
     public renderMobileWalletNav = () => {
         const { colorTheme, mobileWallet } = this.props;
         return (
@@ -199,39 +203,10 @@ class Head extends React.Component<Props> {
         return id ? this.props.intl.formatMessage({ id }) : '';
     };
 
-    private renderMarketToolbar = () => {
-        if (!this.props.location.pathname.includes('/trading/')) {
-            return null;
-        }
-
-        return <HeaderToolbar />;
-    };
-
-    private renderMarketToggler = () => {
-        const { currentMarket, marketSelectorOpened, colorTheme } = this.props;
-        const isLight = colorTheme === 'light';
-        if (!this.props.location.pathname.includes('/trading/')) {
-            return null;
-        }
-
-        return (
-            <div className="pg-header__market-selector-toggle" onClick={this.props.toggleMarketSelector}>
-                <p className="pg-header__market-selector-toggle-value">{currentMarket && currentMarket.name}</p>
-                {marketSelectorOpened ? (
-                    <img src={isLight ? arrowBottomLight : arrowBottom} alt="arrow" />
-                ) : (
-                    <img src={isLight ? arrowRightLight : arrowRight} alt="arrow" />
-                )}
-            </div>
-        );
-    };
-
     private redirectToLanding = () => {
         this.props.toggleSidebar(false);
         this.props.history.push(`${showLanding() ? '/' : '/trading'}`);
     };
-
-    private openSidebar = () => this.props.toggleSidebar(!this.props.sidebarOpened);
 
     private backWallets = () => this.props.setMobileWalletUi('');
 

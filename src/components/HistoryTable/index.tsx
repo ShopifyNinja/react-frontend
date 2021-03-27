@@ -10,7 +10,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import GridLayout from 'react-grid-layout';
+import CloseIcon from '@material-ui/icons/Close';
 
 function createData(history, market, medicine, operation, stopPrice, price, amount, total1, remainder, actual, total2) {
     return { history, market, medicine, operation, stopPrice, price, amount, total1, remainder, actual, total2 };
@@ -28,26 +28,26 @@ function HistoryTable() {
         <Grid container>
             <Grid item xs={12} md={12}>
                 <div className="main-row-container">
-                    <div style={{ color: '#57B2F6', marginRight: 30, cursor: 'pointer' }}>Açık Emirlerim</div>
-                    <div style={{ marginRight: 30, cursor: 'pointer' }}>İşlem Geçmişi</div>
-                    <div style={{ marginRight: 30, cursor: 'pointer' }}>Alım/Satım Geçmişi</div>
+                    <div style={{ color: '#57B2F6' }} className="font-12">Açık Emirlerim</div>
+                    <div className="font-12">İşlem Geçmişi</div>
+                    <div className="font-12">Alım/Satım Geçmişi</div>
                 </div>
                 <TableContainer component={Paper}>
                     <Table aria-label="simple table">
                         <TableHead>
                             <TableRow>
-                                <TableCell className="table-tr">Tarih</TableCell>
-                                <TableCell align="center" className="table-tr">Market</TableCell>
-                                <TableCell align="center" className="table-tr">Tip</TableCell>
-                                <TableCell align="center" className="table-tr">İşlem</TableCell>
-                                <TableCell align="center" className="table-tr">Stop Fiyat (BTC)</TableCell>
-                                <TableCell align="center" className="table-tr">Fiyat (BTC)</TableCell>
-                                <TableCell align="center" className="table-tr">Miktar (ETH)</TableCell>
-                                <TableCell align="center" className="table-tr">Toplam (BTC)</TableCell>
-                                <TableCell align="center" className="table-tr">Kalan (ETH)</TableCell>
-                                <TableCell align="center" className="table-tr">Gerçekleşen Mik.</TableCell>
-                                <TableCell align="right" className="table-tr">Toplam (BTC)</TableCell>
-                                <TableCell align="right" className="table-tr"></TableCell>
+                                <TableCell className="table-tr-header">Tarih</TableCell>
+                                <TableCell align="center" className="table-tr-header">Market</TableCell>
+                                <TableCell align="center" className="table-tr-header">Tip</TableCell>
+                                <TableCell align="center" className="table-tr-header">İşlem</TableCell>
+                                <TableCell align="center" className="table-tr-header">Stop Fiyat (BTC)</TableCell>
+                                <TableCell align="center" className="table-tr-header">Fiyat (BTC)</TableCell>
+                                <TableCell align="center" className="table-tr-header">Miktar (ETH)</TableCell>
+                                <TableCell align="center" className="table-tr-header">Toplam (BTC)</TableCell>
+                                <TableCell align="center" className="table-tr-header">Kalan (ETH)</TableCell>
+                                <TableCell align="center" className="table-tr-header">Gerçekleşen Mik.</TableCell>
+                                <TableCell align="right" className="table-tr-header">Toplam (BTC)</TableCell>
+                                <TableCell align="right" className="table-tr-header"></TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
@@ -65,9 +65,10 @@ function HistoryTable() {
                                     <TableCell align="center" className="table-tr">{row.actual}</TableCell>
                                     <TableCell align="right" className="table-tr">{row.total2}</TableCell>
                                     <TableCell align="right" className="table-tr">
-                                        <Button variant="contained" className="btn-cancel">
+                                        <div className="btn-cancel">
+                                            <CloseIcon />
                                             İptal et
-                                        </Button>
+                                        </div>
                                     </TableCell>
                                 </TableRow>
                             ))}
